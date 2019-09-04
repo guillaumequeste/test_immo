@@ -3,14 +3,16 @@
      include("../lib/connexion.php");
  
     $titleError = $priceError = $imageError = $title = $price = $image = "";
+    $succes = null;
+    $erreur = null;
 
     if(!empty($_POST)) 
     {
         $title      = checkInput($_POST['title']);
         $price      = checkInput($_POST['price']);
-        $image              = checkInput($_FILES["image"]["name"]);
-        $imagePath          = '../public/images/'. basename($image);
-        $imageExtension     = pathinfo($imagePath,PATHINFO_EXTENSION);
+        $image      = checkInput($_FILES["image"]["name"]);
+        $imagePath  = '../public/images/'. basename($image);
+        $imageExtension = pathinfo($imagePath,PATHINFO_EXTENSION);
         $isSuccess  = true;
         $isUploadSuccess    = false;
         
@@ -61,7 +63,9 @@
         {
             $statement = $pdo->prepare("INSERT INTO biens (title,price,image,created_at) values(?, ?, ?, NOW())");
             $statement->execute([$title,$price,$image]);
-            header("Location: index.php");
+            $succes = 'Le bien a été ajouté.';
+        } else {
+            $erreur = "Le bien n'a pas été ajouté correctement.";
         }
     }
 
@@ -75,6 +79,16 @@
 ?>
 
 <h1>Ajouter un bien</h1>
+
+<?php if ($erreur): ?>
+<div class="alert alert-danger">
+    <?= $erreur ?>
+</div>
+<?php elseif ($succes): ?>
+<div class="alert alert-success">
+    <?= $succes ?>
+</div>
+<?php endif ?>
 
 <form class="form" action="index.php?page=insert" role="form" method="post" enctype="multipart/form-data">
     <div class="form-group">

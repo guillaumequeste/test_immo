@@ -8,6 +8,8 @@
     }
 
     $titleError = $priceError = $imageError = $title = $price = $image = "";
+    $succes = null;
+    $erreur = null;
 
     if(!empty($_POST)) 
     {
@@ -73,15 +75,15 @@
                 $statement = $pdo->prepare("UPDATE biens  set title = ?, price = ? WHERE id = ?");
                 $statement->execute([$title,$price,$id]);
             }
-            header("Location: index.php");
+            $succes = "Le bien a été modifié correctement.";
         }
         else if($isImageUpdated && !$isUploadSuccess)
         {
             $statement = $pdo->prepare("SELECT * FROM biens where id = ?");
             $statement->execute([$id]);
             $bien = $statement->fetch();
-            $image          = $item['image'];
-           
+            $image = $item['image'];
+            $erreur = "Le bien n'a pas été modifié correctement.";
         }
     }
     else 
@@ -89,9 +91,9 @@
         $statement = $pdo->prepare("SELECT * FROM biens where id = ?");
         $statement->execute([$id]);
         $item = $statement->fetch();
-        $title           = $item['title'];
-        $price          = $item['price'];
-        $image          = $item['image'];
+        $title = $item['title'];
+        $price = $item['price'];
+        $image = $item['image'];
     }
 
     function checkInput($data) 
@@ -105,6 +107,16 @@
 ?>
 
 <h1><strong>Modifier un bien</strong></h1>
+
+<?php if ($erreur): ?>
+<div class="alert alert-danger">
+    <?= $erreur ?>
+</div>
+<?php elseif ($succes): ?>
+<div class="alert alert-success">
+    <?= $succes ?>
+</div>
+<?php endif ?>
 
 <form class="form" action="<?= 'index.php?page=update&id='.$id;?>" role="form" method="post" enctype="multipart/form-data">
     <div class="form-group">

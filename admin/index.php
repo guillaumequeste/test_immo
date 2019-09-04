@@ -1,5 +1,8 @@
 <?php
     include("../lib/connexion.php");
+
+    // use App\Auth;
+    // Auth::check();
 ?>
 
 <h1>Liste des biens<a href="index.php?page=insert"> Ajouter</a></h1>
