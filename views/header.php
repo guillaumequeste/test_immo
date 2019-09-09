@@ -25,6 +25,18 @@ $page = $_REQUEST["page"] ?? "home";
     case 'update' :
       $fichier = "../admin/update.php";
       break;
+    case 'login' :
+      $fichier = "../admin/login.php";
+      break;
+    case 'register' :
+      $fichier = "../admin/register.php";
+      break;
+    case 'logout' :
+      $fichier = "../admin/logout.php";
+      break;
+    case 'welcome' :
+      $fichier = "../admin/welcome.php";
+      break;
     default:
       $fichier = "404.php";
       break;

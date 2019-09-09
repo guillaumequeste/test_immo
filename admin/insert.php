@@ -18,7 +18,7 @@
         
         if(empty($title)) 
         {
-            $titlerror = 'Ce champ ne peut pas être vide';
+            $titleError = 'Ce champ ne peut pas être vide';
             $isSuccess = false;
         }
         if(empty($price)) 
