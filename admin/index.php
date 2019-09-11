@@ -19,7 +19,7 @@
  {
  ?>
 
- Welcome,
+ Bienvenue 
  <?php
    echo $row['username'];
  }
@@ -54,4 +54,4 @@
     </tbody>
 </table>
 
-<a href="index.php?page=logout">Logout</a>
+<a href="index.php?page=logout">Se déconnecter</a>

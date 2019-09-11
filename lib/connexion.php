@@ -28,3 +28,11 @@ catch(Exception $e)
 }
 
 // Si tout va bien, on peut continuer
+
+/* Sur le serveur, en production :
+    $host = "91.216.107.162";
+    $db = "guill1029127";
+    $username = "guill1029127";
+    $password = "mfkm6tc9gi";
+    $charset = "utf8mb4";
+    $port = "3306"; */
