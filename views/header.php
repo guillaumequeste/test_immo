@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $page = $_REQUEST["page"] ?? "home";
   $fichier = "";
 
@@ -74,8 +76,13 @@ $page = $_REQUEST["page"] ?? "home";
               <a class="nav-link" href="index.php?page=contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?page=admin">Admin</a>
+              <a class="nav-link" href="index.php?page=login">Admin</a>
             </li>
+            <?php if (isset($_SESSION["user_login"])): ?>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php?page=logout">Se déconnecter</a>
+            </li>
+            <?php endif ?>
         </ul>
     </div>
 </nav>
