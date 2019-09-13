@@ -39,6 +39,9 @@ $page = $_REQUEST["page"] ?? "home";
     case 'welcome' :
       $fichier = "../admin/welcome.php";
       break;
+    case 'footer' :
+      $fichier = "../admin/footer.php";
+      break;
     default:
       $fichier = "404.php";
       break;
@@ -87,5 +90,5 @@ $page = $_REQUEST["page"] ?? "home";
     </div>
 </nav>
 
-<main role="main" class="container" style="height:86vh;">
+<main role="main" class="container" style="min-height:86vh;">
 
