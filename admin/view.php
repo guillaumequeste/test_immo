@@ -35,3 +35,17 @@
 <div class="form-actions">
     <a href="index.php?page=admin">Retour</a>
 </div>
+
+
+
+
+<?php
+$query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
+while ($donnees = $query->fetch())
+{
+?>
+<img src="./images/<?= $donnees['name'];?>" style="width:10%;">
+
+<?php
+}
+?>

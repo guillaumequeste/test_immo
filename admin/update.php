@@ -141,3 +141,52 @@
         <a class="btn btn-primary" href="index.php?page=admin"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
     </div>
 </form>
+
+
+
+<?php 
+ 
+ if(isset($_POST['submit'])){
+ 
+   // Count total files
+   $countfiles = count($_FILES['files']['name']);
+  
+   $id = checkInput($_GET['id']);
+   // Prepared statement
+   $query = "INSERT INTO images (bien_id,name,image) VALUES($id,?,?)";
+ 
+   $statement = $pdo->prepare($query);
+ 
+   // Loop all files
+   for($i=0;$i<$countfiles;$i++){
+ 
+     // File name
+     $filename = $_FILES['files']['name'][$i];
+ 
+     // Get extension
+     $ext = end((explode(".", $filename)));
+ 
+     // Valid image extension
+     $valid_ext = array("png","jpeg","jpg");
+ 
+     if(in_array($ext, $valid_ext)){
+ 
+       // Upload file
+       if(move_uploaded_file($_FILES['files']['tmp_name'][$i],'../public/images/'.$filename)){
+ 
+         // Execute query
+         $statement->execute(array($filename,'../public/images/'.$filename));
+ 
+       }
+ 
+     }
+  
+   }
+   echo "File upload successfully";
+ }
+ ?>
+ 
+ <form method='post' action='' enctype='multipart/form-data'>
+   <input type='file' name='files[]' multiple />
+   <input type='submit' value='Submit' name='submit' />
+ </form>

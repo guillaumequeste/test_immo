@@ -5,7 +5,6 @@
     $titleError = $priceError = $imageError = $title = $price = $image = "";
     $succes = null;
     $erreur = null;
-
     if(!empty($_POST)) 
     {
         $title      = checkInput($_POST['title']);
@@ -68,7 +67,6 @@
             $erreur = "Le bien n'a pas été ajouté correctement.";
         }
     }
-
     function checkInput($data) 
     {
       $data = trim($data);
