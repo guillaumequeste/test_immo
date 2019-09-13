@@ -42,6 +42,9 @@ $page = $_REQUEST["page"] ?? "home";
     case 'footer' :
       $fichier = "../admin/footer.php";
       break;
+    case 'deletePhoto' :
+      $fichier = "../admin/deletePhoto.php";
+      break;
     default:
       $fichier = "404.php";
       break;

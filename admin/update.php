@@ -187,7 +187,7 @@ while ($donnees = $query->fetch())
 {
 ?>
 <img src="./images/<?= $donnees['name'];?>" style="width:10%;">
-
+<a href="index.php?page=deletePhoto&id=<?=$donnees['id']?>">supprimer</a>
 <?php
 }
 ?>
