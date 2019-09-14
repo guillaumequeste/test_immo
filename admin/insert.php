@@ -63,6 +63,7 @@
             $statement = $pdo->prepare("INSERT INTO biens (title,price,image,created_at) values(?, ?, ?, NOW())");
             $statement->execute([$title,$price,$image]);
             $succes = 'Le bien a été ajouté.';
+            header("refresh:2; index.php?page=admin");
         } else {
             $erreur = "Le bien n'a pas été ajouté correctement.";
         }

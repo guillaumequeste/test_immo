@@ -14,7 +14,8 @@
         $id = checkInput($_POST['id']);
         $statement = $pdo->prepare("DELETE FROM biens WHERE id = ?");
         $statement->execute([$id]);
-        $succes = "Le bien a été supprimé."; 
+        $succes = "Le bien a été supprimé.";
+        header("refresh:2; index.php?page=admin");
     }
 
     function checkInput($data) 

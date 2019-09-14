@@ -14,7 +14,8 @@
         $id = checkInput($_POST['id']);
         $statement = $pdo->prepare("DELETE FROM images WHERE id = ?");
         $statement->execute([$id]);
-        $succes = "L'image a été supprimée."; 
+        $succes = "L'image a été supprimée.";
+        header("refresh:2; index.php?page=admin");
     }
 
     function checkInput($data) 
